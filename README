@@ -1,13 +1,9 @@
-# heroku
+# grab-bag
 
-FIXME: write description
-
-## Usage
-
-FIXME: write
+A muckabout app for learning Clojure with.
 
 ## License
 
-Copyright (C) 2014 FIXME
+Copyright (C) 2014 Peter Reavy
 
 Distributed under the Eclipse Public License, the same as Clojure.
