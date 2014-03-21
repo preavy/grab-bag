@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/helloworld-standalone.jar clojure.main -m hello.world $PORT
+web: java $JVM_OPTS -cp target/grab-bag-standalone.jar clojure.main -m hello.world $PORT
