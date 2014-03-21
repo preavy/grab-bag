@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/grab-bag-standalone.jar
+web: java $JVM_OPTS -cp target/grab-bag-standalone.jar clojure.main -m grab.bag
