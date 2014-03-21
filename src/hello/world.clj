@@ -3,6 +3,6 @@
 (defn app [req]
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body "Hello, world"})
+   :body "Hello, cruel world"})
 (defn -main [port]
   (jetty/run-jetty app {:port (Integer. port) :join? false}))
