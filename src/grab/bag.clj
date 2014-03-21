@@ -6,4 +6,4 @@
   (GET "/" [] "<h2>Grab Bag</h2>"))
 
 (defn -main [port]
-  (jetty/run-jetty #'routes {:port port :join? false}))
+  (jetty/run-jetty #'routes {:port (Integer. port) :join? false}))
