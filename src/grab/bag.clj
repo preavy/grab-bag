@@ -5,5 +5,5 @@
 (defroutes routes
   (GET "/" [] "<h2>Grab Bag</h2>"))
 
-(defn -main []
-  (jetty/run-jetty #'routes {:port 8080 :join? false}))
+(defn -main [port]
+  (jetty/run-jetty #'routes {:port port :join? false}))
