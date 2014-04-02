@@ -1,10 +1,16 @@
 (ns grab.bag
   (:require [compojure.core :refer [defroutes GET POST]]
+            [compojure.handler :as handler]
             [ring.adapter.jetty :as jetty]))
 
+(def my-name (atom ""))
+
+; let's make a handler another way
 (defroutes routes
-  (GET "/" [] "<h2>Grab Bag</h2>")
-  (POST "/hey" [] "reply"))
+  (GET "/" [] (str "<h2>Grabbe Bagge</h2>" "Last name: " @my-name))
+  (POST "/hey" [name] (reset! my-name name)))
+
+(def my-handler (handler/site routes))
 
 (defn -main [port]
-  (jetty/run-jetty #'routes {:port (Integer. port) :join? false}))
+  (jetty/run-jetty #'my-handler {:port (Integer. port) :join? false}))
