@@ -3,12 +3,20 @@
             [compojure.handler :as handler]
             [ring.adapter.jetty :as jetty]))
 
-(def my-name (atom ""))
+(def my-name (atom {:name "peter"}))
 
-; let's make a handler another way
+(defn render-status []
+  (str @my-name))
+
+(defn update-status! [name]
+  (reset! my-name (transform my-name name)))
+
+(defn transform [my-name name]
+  (assoc @my-name :name name))
+
 (defroutes routes
-  (GET "/" [] (str "<h2>Grabbe Bagge</h2>" "Last name: " @my-name))
-  (POST "/hey" [name] (reset! my-name name)))
+  (GET "/" [] (str "<h2>Grabbe Bagge</h2>" (render-status)))
+  (POST "/hey" [name] (update-status! name)))
 
 (def my-handler (handler/site routes))
 
