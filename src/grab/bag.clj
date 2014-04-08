@@ -1,7 +1,8 @@
 (ns grab.bag
   (:require [compojure.core :refer [defroutes GET POST]]
             [compojure.handler :as handler]
-            [ring.adapter.jetty :as jetty]))
+            [ring.adapter.jetty :as jetty]
+            [grab.data :as data]))
 
 (def my-name (atom {:name "peter"}))
 
@@ -9,9 +10,9 @@
   (str @my-name))
 
 (defn update-status! [name]
-  (reset! my-name (transform my-name name)))
+  (reset! my-name (transforme my-name name)))
 
-(defn transform [my-name name]
+(defn transforme [my-name name]
   (assoc @my-name :name name))
 
 (defroutes routes

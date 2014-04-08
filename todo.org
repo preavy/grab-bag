@@ -1,0 +1,13 @@
+TODO
+
+1. Sort out namespaces.
+2. Make the web page call the pasted-in stuff.
+3. You can call grab with fake keys and it will just insert a record.
+4. Grab should do some checks.
+5. Should choices be passed in?
+6. Write (which I do need to think about a bit more):
+   transaction
+     update-map(grab choice person (read-map))
+7. Write db functions (can write these now, because I have pg installed)
+   1. update-map
+   2. read-map
