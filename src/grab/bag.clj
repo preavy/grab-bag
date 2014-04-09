@@ -4,20 +4,12 @@
             [ring.adapter.jetty :as jetty]
             [grab.data :as data]))
 
-(def my-name (atom {:name "peter"}))
-
 (defn render-status []
-  (str @my-name))
-
-(defn update-status! [name]
-  (reset! my-name (transforme my-name name)))
-
-(defn transforme [my-name name]
-  (assoc @my-name :name name))
+  (str @data/choices))
 
 (defroutes routes
   (GET "/" [] (str "<h2>Grabbe Bagge</h2>" (render-status)))
-  (POST "/hey" [name] (update-status! name)))
+  (POST "/hey" [person choice] (swap! grab.data/choices grab.data/grab (keyword person) (keyword choice))))
 
 (def my-handler (handler/site routes))
 
