@@ -2,10 +2,19 @@
   (:require [compojure.core :refer [defroutes GET POST]]
             [compojure.handler :as handler]
             [ring.adapter.jetty :as jetty]
-            [grab-bag.data :as data]))
+            [grab-bag.data :as data]
+            [hiccup.page :as p]))
+
+(defn person-box []
+  (p/html5 [:select])
+)
+
+(defn choices-box []
+  (p/html5 [:select])
+)
 
 (defn render-status [[choices error-message]]
-  (str choices ": " error-message))
+  (p/html5 [:head] [:body (person-box) (choices-box) [:div (str choices)] [:div (str error-message)]]))
 
 (defroutes routes
   (GET "/" [] (str "<h2>Grabbe Bagge</h2>" (render-status [@data/choices nil])))
