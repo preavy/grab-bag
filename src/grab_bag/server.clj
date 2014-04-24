@@ -4,12 +4,12 @@
             [ring.adapter.jetty :as jetty]
             [grab-bag.data :as data]))
 
-(defn render-status []
-  (str @data/choices))
+(defn render-status [[choices error-message]]
+  (str choices ": " error-message))
 
 (defroutes routes
-  (GET "/" [] (str "<h2>Grabbe Bagge</h2>" (render-status)))
-  (POST "/choose" [person choice] (data/choose! (keyword person) (keyword choice))))
+  (GET "/" [] (str "<h2>Grabbe Bagge</h2>" (render-status [@data/choices nil])))
+  (POST "/choose" [person choice] (render-status (data/choose! (keyword person) (keyword choice)))))
 
 (def my-handler (handler/site routes))
 
