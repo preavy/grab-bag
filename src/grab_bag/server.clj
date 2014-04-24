@@ -9,7 +9,7 @@
 
 (defroutes routes
   (GET "/" [] (str "<h2>Grabbe Bagge</h2>" (render-status)))
-  (POST "/hey" [person choice] (swap! grab-bag.data/choices grab-bag.data/grab (keyword person) (keyword choice))))
+  (POST "/choose" [person choice] (data/choose! (keyword person) (keyword choice))))
 
 (def my-handler (handler/site routes))
 

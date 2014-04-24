@@ -34,3 +34,10 @@
 (defn grab
   [choices person choice]
   (update-in choices [choice :chosen-by] (fn [x] (conj x person))))
+
+(defn choose!
+  [person choice]
+(cond
+ (not (in-stock choice)) [nil "Out of stock."]
+ (already-has person choice) [nil "Already has."]
+ true [(swap! choices grab person choice) nil]))
