@@ -6,14 +6,14 @@
             [hiccup.page :as p]))
 
 (defn person-box []
-  [:select (map #(vector :option %) data/people)])
+  [:select {:name "person"} (map #(vector :option %) data/people)])
 
 (defn choices-box []
-  [:select]
+  [:select {:name "choice"} (map #(vector :option %) (keys @data/choices))]
 )
 
 (defn render-status [[choices error-message]]
-  (p/html5 [:head] [:body (person-box) (choices-box) [:div (str choices)] [:div (str error-message)]]))
+  (p/html5 [:head] [:body [:form {:action "choose" :method "POST"} "Person" (person-box) "Choice" (choices-box) [:input {:type "Submit"}]] [:div (str choices)] [:div (str error-message)]]))
 
 (defroutes routes
   (GET "/" [] (str "<h2>Grabbe Bagge</h2>" (render-status [@data/choices nil])))
