@@ -12,14 +12,23 @@
   [:select {:name "choice"} (map #(vector :option %) (keys @data/choices))]
 )
 
-(defn render-status [[choices error-message]]
-  (p/html5 [:head] [:body [:form {:action "choose" :method "POST"} "Person" (person-box) "Choice" (choices-box) [:input {:type "Submit"}]] [:div (str choices)] [:div (str error-message)]]))
+(defn render-page [[choices error-message]]
+  (p/html5
+   [:head]
+   [:body
+    [:h2 "Grabbe Bagge"]
+    [:form {:action "choose" :method "POST"}
+     "Person" (person-box)
+     "Choice" (choices-box)
+     [:input {:type "Submit"}]]
+    [:div (str choices)]
+    [:div (str error-message)]]))
 
 (defroutes routes
-  (GET "/" [] (str "<h2>Grabbe Bagge</h2>" (render-status [@data/choices nil])))
-  (POST "/choose" [person choice] (render-status (data/choose! (keyword person) (keyword choice)))))
+  (GET "/" [] (render-page [@data/choices nil]))
+  (POST "/choose" [person choice] (render-page (data/choose! (keyword person) (keyword choice)))))
 
-(def my-handler (handler/site routes))
+(def route-handler (handler/site routes))
 
 (defn -main [port]
-  (jetty/run-jetty #'my-handler {:port (Integer. port) :join? false}))
+  (jetty/run-jetty #'route-handler {:port (Integer. port) :join? false}))

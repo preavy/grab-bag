@@ -8,8 +8,7 @@
                     :smarties {:max 6 :chosen-by []}
                     :jelly-tots {:max 6 :chosen-by []}
                     :buttons {:max 6 :chosen-by []}
-                    :dib-dabs {:max 6 :chosen-by []}
-                    }))
+                    :dib-dabs {:max 6 :chosen-by []}}))
 
 (defn already-has
   [person choice]
