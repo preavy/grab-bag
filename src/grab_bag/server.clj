@@ -6,11 +6,10 @@
             [hiccup.page :as p]))
 
 (defn person-box []
-  (p/html5 [:select])
-)
+  [:select (map #(vector :option %) data/people)])
 
 (defn choices-box []
-  (p/html5 [:select])
+  [:select]
 )
 
 (defn render-status [[choices error-message]]
