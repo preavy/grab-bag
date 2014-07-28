@@ -5,4 +5,6 @@
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]]
   :uberjar-name "grab-bag-standalone.jar"
-  :min-lein-version "2.0.0")
+  :min-lein-version "2.0.0"
+  :plugins [[lein-ring "0.8.11"]]
+  :ring {:handler grab-bag.server/route-handler})
